@@ -8,7 +8,7 @@ class Fib extends Component {
     index: "",
   };
 
-  UNSAFE_componentWillMount() {
+  componentDidMount() {
     this.fetchValues();
     this.fetchIndexes();
   }
