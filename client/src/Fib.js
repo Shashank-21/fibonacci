@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 const fetchValues = async () => {
@@ -16,8 +16,13 @@ function Fib() {
   const [index, setIndex] = useState("");
 
   useEffect(() => {
-    fetchValues().then((values) => setValues(values));
-    fetchIndexes().then((seenIndexes) => setSeenIndexes(seenIndexes));
+    const fetchData = async () => {
+      const values = await fetchValues();
+      const seenIndexes = await fetchIndexes();
+      setValues(values);
+      setSeenIndexes(seenIndexes);
+    };
+    fetchData();
   }, []);
 
   const renderSeenIndexes = () => {
